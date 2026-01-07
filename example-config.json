@@ -1,7 +1,7 @@
 {
   "_comment": "This is an example configuration for macOS Space Saver",
   "_note": "spaceIndex: Currently defaults to 0 during capture. Manually edit to specify which Space/Desktop (0, 1, 2, etc.) each window should be on",
-  "timestamp": "2026-01-07T09:00:00Z",
+  "timestamp": "2024-01-01T00:00:00Z",
   "version": "1.0",
   "windows": [
     {

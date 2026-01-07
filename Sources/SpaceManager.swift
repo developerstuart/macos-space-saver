@@ -175,7 +175,7 @@ class SpaceManager {
         let displayID = getDisplayForWindow(frame: frame)
         
         // Detect which Space the window is on (this is an approximation)
-        let spaceIndex = getSpaceForWindow(frame: frame)
+        let spaceIndex = getDefaultSpaceIndex()
         
         // Chrome-specific detection
         var chromeProfile: String?
@@ -240,7 +240,7 @@ class SpaceManager {
         return displayCount > 0 ? displays[0] : CGMainDisplayID()
     }
     
-    private func getSpaceForWindow(frame: CGRect) -> Int {
+    private func getDefaultSpaceIndex() -> Int {
         // IMPORTANT LIMITATION: Accurate Space detection requires private APIs
         // (CGSGetWindowsInSpaceForConnection or similar) which are not available
         // in the public macOS SDK. Current implementation uses a simplified approach.
