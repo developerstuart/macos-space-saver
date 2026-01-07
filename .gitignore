@@ -1,0 +1,22 @@
+# Swift build artifacts
+.build/
+.swiftpm/
+*.swiftmodule
+*.swiftdoc
+
+# Xcode
+*.xcodeproj
+*.xcworkspace
+xcuserdata/
+DerivedData/
+
+# macOS
+.DS_Store
+*.app
+
+# Configuration files (personal)
+.macos-space-saver.json
+
+# Temporary files
+*.tmp
+*.log
