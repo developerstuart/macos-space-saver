@@ -211,10 +211,10 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Known Limitations
 
-- Space detection relies on window position heuristics (macOS private APIs would be needed for exact Space detection)
+- **Space Detection**: Currently defaults all windows to Space 0. Accurate Space detection requires macOS private APIs (e.g., CGSGetWindowsInSpaceForConnection) which are not available in the public SDK. **Workaround**: Manually edit the `spaceIndex` field in the JSON configuration file for each window.
 - Some applications don't support programmatic window positioning
 - Full-screen windows may not be handled correctly
-- Multiple windows with identical titles may not be distinguished
+- Multiple windows with identical titles may not be distinguished reliably
 
 ## License
 

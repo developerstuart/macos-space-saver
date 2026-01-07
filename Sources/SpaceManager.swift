@@ -147,12 +147,12 @@ class SpaceManager {
         var position = CGPoint.zero
         var size = CGSize.zero
         
-        if let positionValue = positionValue {
-            AXValueGetValue(positionValue as! AXValue, .cgPoint, &position)
+        if let positionValue = positionValue as? AXValue {
+            AXValueGetValue(positionValue, .cgPoint, &position)
         }
         
-        if let sizeValue = sizeValue {
-            AXValueGetValue(sizeValue as! AXValue, .cgSize, &size)
+        if let sizeValue = sizeValue as? AXValue {
+            AXValueGetValue(sizeValue, .cgSize, &size)
         }
         
         let frame = CGRect(origin: position, size: size)
@@ -237,10 +237,18 @@ class SpaceManager {
     }
     
     private func getSpaceForWindow(frame: CGRect) -> Int {
-        // This is a simplified approach - actual Space detection requires private APIs
-        // For now, we'll use a heuristic based on window position
-        // In a production app, you'd use CGSGetWindowsInSpaceForConnection or similar
-        return 0 // Default to space 0
+        // IMPORTANT LIMITATION: Accurate Space detection requires private APIs
+        // (CGSGetWindowsInSpaceForConnection or similar) which are not available
+        // in the public macOS SDK. Current implementation uses a simplified approach.
+        // 
+        // For production use, consider:
+        // 1. Using a workaround with private frameworks (requires disabling SIP)
+        // 2. Using AppleScript to detect Spaces
+        // 3. Manual Space assignment in configuration file
+        // 
+        // For now, defaulting to Space 0 - users can manually edit the JSON config
+        // to specify the correct Space for each window.
+        return 0 // Default to space 0 - users should manually edit if needed
     }
     
     private func hideWindowsNotInConfig(config: LayoutConfiguration, runningApps: [NSRunningApplication]) {

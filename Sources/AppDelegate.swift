@@ -1,14 +1,23 @@
 import Cocoa
 import AppKit
+import UserNotifications
 
-@main
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDelegate {
     var statusItem: NSStatusItem!
     var menu: NSMenu!
     var spaceManager: SpaceManager!
     var configPath: String!
     
     func applicationDidFinishLaunching(_ notification: Notification) {
+        // Set up user notifications
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self
+        center.requestAuthorization(options: [.alert, .sound]) { granted, error in
+            if let error = error {
+                print("Notification authorization error: \(error)")
+            }
+        }
+        
         // Set up menu bar icon
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         if let button = statusItem.button {
@@ -100,10 +109,31 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func showNotification(title: String, message: String) {
-        let notification = NSUserNotification()
-        notification.title = title
-        notification.informativeText = message
-        notification.soundName = NSUserNotificationDefaultSoundName
-        NSUserNotificationCenter.default.deliver(notification)
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = message
+        content.sound = .default
+        
+        let request = UNNotificationRequest(
+            identifier: UUID().uuidString,
+            content: content,
+            trigger: nil // Deliver immediately
+        )
+        
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print("Error showing notification: \(error)")
+            }
+        }
+    }
+    
+    // UNUserNotificationCenterDelegate methods
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
+        // Show notification even when app is in foreground
+        completionHandler([.banner, .sound])
     }
 }
