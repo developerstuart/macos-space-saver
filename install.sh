@@ -32,8 +32,9 @@ echo ""
 # Build the application
 echo "Building application..."
 swift build -c release
+BUILD_RESULT=$?
 
-if [ $? -eq 0 ]; then
+if [ $BUILD_RESULT -eq 0 ]; then
     echo "✓ Build successful!"
     echo ""
 else
@@ -44,8 +45,9 @@ fi
 # Create app bundle
 echo "Creating app bundle..."
 ./create_app_bundle.sh
+BUNDLE_RESULT=$?
 
-if [ $? -eq 0 ]; then
+if [ $BUNDLE_RESULT -eq 0 ]; then
     echo "✓ App bundle created!"
     echo ""
 else

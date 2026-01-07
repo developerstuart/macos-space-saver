@@ -148,11 +148,15 @@ class SpaceManager {
         var size = CGSize.zero
         
         if let positionValue = positionValue as? AXValue {
-            AXValueGetValue(positionValue, .cgPoint, &position)
+            if !AXValueGetValue(positionValue, .cgPoint, &position) {
+                print("Warning: Failed to extract position for window: \(title)")
+            }
         }
         
         if let sizeValue = sizeValue as? AXValue {
-            AXValueGetValue(sizeValue, .cgSize, &size)
+            if !AXValueGetValue(sizeValue, .cgSize, &size) {
+                print("Warning: Failed to extract size for window: \(title)")
+            }
         }
         
         let frame = CGRect(origin: position, size: size)
@@ -331,12 +335,18 @@ class SpaceManager {
                 if let title = titleValue as? String, title == window.windowTitle {
                     // Set window position
                     var position = window.frame.origin
-                    let positionValue = AXValueCreate(.cgPoint, &position)!
+                    guard let positionValue = AXValueCreate(.cgPoint, &position) else {
+                        print("Warning: Failed to create position value for window: \(window.windowTitle)")
+                        continue
+                    }
                     AXUIElementSetAttributeValue(windowElement, kAXPositionAttribute as CFString, positionValue)
                     
                     // Set window size
                     var size = window.frame.size
-                    let sizeValue = AXValueCreate(.cgSize, &size)!
+                    guard let sizeValue = AXValueCreate(.cgSize, &size) else {
+                        print("Warning: Failed to create size value for window: \(window.windowTitle)")
+                        continue
+                    }
                     AXUIElementSetAttributeValue(windowElement, kAXSizeAttribute as CFString, sizeValue)
                     
                     // Set minimized state

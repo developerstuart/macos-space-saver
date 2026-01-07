@@ -26,10 +26,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
         
         // Set up menu
         menu = NSMenu()
-        menu.addItem(NSMenuItem(title: "Save Current Layout", action: #selector(saveLayout), keyEquivalent: "s"))
-        menu.addItem(NSMenuItem(title: "Restore Layout", action: #selector(restoreLayout), keyEquivalent: "r"))
+        menu.addItem(NSMenuItem(title: "Save Current Layout", action: #selector(saveLayout), keyEquivalent: "S"))
+        menu.addItem(NSMenuItem(title: "Restore Layout", action: #selector(restoreLayout), keyEquivalent: "R"))
         menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Open Config File", action: #selector(openConfigFile), keyEquivalent: "o"))
+        menu.addItem(NSMenuItem(title: "Open Config File", action: #selector(openConfigFile), keyEquivalent: "O"))
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
         
