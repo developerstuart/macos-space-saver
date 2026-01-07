@@ -1,0 +1,59 @@
+{
+  "_comment": "This is an example configuration for macOS Space Saver",
+  "_note": "spaceIndex: Currently defaults to 0 during capture. Manually edit to specify which Space/Desktop (0, 1, 2, etc.) each window should be on",
+  "timestamp": "2024-01-01T00:00:00Z",
+  "version": "1.0",
+  "windows": [
+    {
+      "appName": "Google Chrome",
+      "appBundleIdentifier": "com.google.Chrome",
+      "windowTitle": "GitHub - Profile 1",
+      "frame": {
+        "x": 0,
+        "y": 23,
+        "width": 1920,
+        "height": 1057
+      },
+      "spaceIndex": 0,
+      "displayID": 724241472,
+      "isMinimized": false,
+      "isHidden": false,
+      "chromeProfile": "Profile 1",
+      "vscodeWorkspace": null
+    },
+    {
+      "appName": "Visual Studio Code",
+      "appBundleIdentifier": "com.microsoft.VSCode",
+      "windowTitle": "index.js - my-project - Visual Studio Code",
+      "frame": {
+        "x": 1920,
+        "y": 23,
+        "width": 1920,
+        "height": 1057
+      },
+      "spaceIndex": 1,
+      "displayID": 724241473,
+      "isMinimized": false,
+      "isHidden": false,
+      "chromeProfile": null,
+      "vscodeWorkspace": "my-project"
+    },
+    {
+      "appName": "Terminal",
+      "appBundleIdentifier": "com.apple.Terminal",
+      "windowTitle": "bash",
+      "frame": {
+        "x": 100,
+        "y": 100,
+        "width": 800,
+        "height": 600
+      },
+      "spaceIndex": 0,
+      "displayID": 724241472,
+      "isMinimized": false,
+      "isHidden": false,
+      "chromeProfile": null,
+      "vscodeWorkspace": null
+    }
+  ]
+}
